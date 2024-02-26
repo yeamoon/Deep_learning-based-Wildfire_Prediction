@@ -5,12 +5,11 @@ The dataset provided contains satellite images with dimensions of 350x350 pixels
 The dataset consists of 22,710 images representing areas affected by wildfires and 20,140 images representing areas with no wildfire activity. To facilitate machine learning tasks, the dataset has been divided into training, testing, and validation sets, with approximately 70%, 15%, and 15% of the data allocated to each set respectively.
 
 To construct this dataset, Longitude and Latitude coordinates corresponding to wildfire spots, where the burned area exceeds 0.01 acres, were utilized. Satellite images of these locations were extracted using the MapBox API. This extraction process aims to provide a more accessible and structured format of the dataset for deep learning purposes, facilitating the development of models capable of predicting wildfire risk in specific areas.
-Advanced Neural Network Implementation
 
-The deep learning model is structured around a Sequential neural network with a configuration tuned to address the binary classification challenge presented by fraud detection.
-Key components of the model include:
+Advanced Neural Network Implementation:
 
-Sure, here's a simplified structure of ResNet-50, highlighting the different layers:
+For this task I have used the Resnet-50 as pretrained model. Here is the overview of this model.
+
 1. Input Layer: 
    - Shape: 224x224x3 (for RGB images)
    - Typically, the input size is 224x224 pixels with 3 color channels (RGB).
@@ -48,14 +47,18 @@ Sure, here's a simplified structure of ResNet-50, highlighting the different lay
 
 The project integrates an Semi Supervised Pseudo Labeling  workflow to improve model performance  iteratively:
 
-• Simulated Expert Review: A function simulates the expert review process, generating corrected labels for the model to learn from, thereby mimicking real-world scenarios where experts provide feedback.
+4. Train Initial Model: Train a baseline model using only the labeled data. In the context of wildfire prediction, this model is a convolutional neural network (CNN) such as ResNet-50 trained on the labeled satellite images to classify them as either "wildfire" or "no wildfire."
 
-• Interactive Data Point Review: A manual process allows for the precise updating of labels by human experts, drawing on their domain knowledge to correct model predictions and guide the learning process.
+5.Generate Pseudo-labels: Use the trained model to make predictions on the unlabeled data. These predictions are known as pseudo-labels. Images with high prediction confidence can be assigned pseudo-labels indicating whether they are likely to depict areas affected by wildfires or not.
 
-Training and Evaluation
+6. Combine Labeled and Pseudo-labeled Data: Merge the labeled data with the unlabeled data that has been assigned pseudo-labels. This combined dataset is now larger and can be used for further training.
 
-• Handling Class Imbalance: The Synthetic Minority Over-sampling Technique (SMOTE) was applied to address the imbalance issue prevalent in the dataset, thereby enhancing the model's ability to identify the minority class.
+7. Fine-tune Model: Fine-tune the pre-trained model using the combined dataset. This involves updating the model's weights based on both the labeled data and the pseudo-labeled data. Since the pseudo-labels may contain noise, it's essential to carefully control the confidence threshold used for assigning pseudo-labels and consider using techniques to mitigate the impact of noisy labels.
 
-• Training Regimen: The model was trained over 10 epochs with a batch size of 32, a decision based on preliminary experiments to balance training time and model performance.
+8. Iterative Training: Optionally, repeat steps 5-7 for multiple iterations, gradually increasing the amount of labeled data through pseudo-labeling. Each iteration can potentially improve the model's performance by leveraging the unlabeled data effectively.
 
+9. Evaluate Model Performance: Assess the performance of the semi-supervised model on a separate validation set or through cross-validation. This step helps determine whether the addition of pseudo-labeled data has improved the model's predictive accuracy compared to using only the initial labeled data.
+
+
+By leveraging semi-supervised learning with pseudo-labeling, wildfire prediction models can make more efficient use of available data, potentially leading to improved accuracy and robustness in identifying wildfire-prone areas.
 • Performance Metrics: A suite of metrics, including accuracy, precision, recall, and the F1 score, were utilized to provide a holistic evaluation of the model's performance. These metrics are particularly relevant for the imbalanced classification task at hand, offering insights into the model's ability to predict minority class instances without overwhelming false positives correctly.
