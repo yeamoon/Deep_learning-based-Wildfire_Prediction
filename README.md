@@ -47,17 +47,17 @@ For this task I have used the Resnet-50 as pretrained model. Here is the overvie
 
 The project integrates an Semi Supervised Pseudo Labeling  workflow to improve model performance  iteratively:
 
-4. Train Initial Model: Train a baseline model using only the labeled data. In the context of wildfire prediction, this model is a convolutional neural network (CNN) such as ResNet-50 trained on the labeled satellite images to classify them as either "wildfire" or "no wildfire."
+ Train Initial Model: Train a baseline model using only the labeled data. In the context of wildfire prediction, this model is a convolutional neural network (CNN) such as ResNet-50 trained on the labeled satellite images to classify them as either "wildfire" or "no wildfire."
 
-5.Generate Pseudo-labels: Use the trained model to make predictions on the unlabeled data. These predictions are known as pseudo-labels. Images with high prediction confidence can be assigned pseudo-labels indicating whether they are likely to depict areas affected by wildfires or not.
+Generate Pseudo-labels: Use the trained model to make predictions on the unlabeled data. These predictions are known as pseudo-labels. Images with high prediction confidence can be assigned pseudo-labels indicating whether they are likely to depict areas affected by wildfires or not.
 
-6. Combine Labeled and Pseudo-labeled Data: Merge the labeled data with the unlabeled data that has been assigned pseudo-labels. This combined dataset is now larger and can be used for further training.
+Combine Labeled and Pseudo-labeled Data: Merge the labeled data with the unlabeled data that has been assigned pseudo-labels. This combined dataset is now larger and can be used for further training.
 
-7. Fine-tune Model: Fine-tune the pre-trained model using the combined dataset. This involves updating the model's weights based on both the labeled data and the pseudo-labeled data. Since the pseudo-labels may contain noise, it's essential to carefully control the confidence threshold used for assigning pseudo-labels and consider using techniques to mitigate the impact of noisy labels.
+Fine-tune Model: Fine-tune the pre-trained model using the combined dataset. This involves updating the model's weights based on both the labeled data and the pseudo-labeled data. Since the pseudo-labels may contain noise, it's essential to carefully control the confidence threshold used for assigning pseudo-labels and consider using techniques to mitigate the impact of noisy labels.
 
-8. Iterative Training: Optionally, repeat steps 5-7 for multiple iterations, gradually increasing the amount of labeled data through pseudo-labeling. Each iteration can potentially improve the model's performance by leveraging the unlabeled data effectively.
+Iterative Training: Optionally, repeat steps 5-7 for multiple iterations, gradually increasing the amount of labeled data through pseudo-labeling. Each iteration can potentially improve the model's performance by leveraging the unlabeled data effectively.
 
-9. Evaluate Model Performance: Assess the performance of the semi-supervised model on a separate validation set or through cross-validation. This step helps determine whether the addition of pseudo-labeled data has improved the model's predictive accuracy compared to using only the initial labeled data.
+Evaluate Model Performance: Assess the performance of the semi-supervised model on a separate validation set or through cross-validation. This step helps determine whether the addition of pseudo-labeled data has improved the model's predictive accuracy compared to using only the initial labeled data.
 
 
 By leveraging semi-supervised learning with pseudo-labeling, wildfire prediction models can make more efficient use of available data, potentially leading to improved accuracy and robustness in identifying wildfire-prone areas.
