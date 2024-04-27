@@ -1,4 +1,4 @@
-#Wildfire Prediction using Semi-supervised Learning
+Wildfire Prediction using Semi-supervised Learning
 
 Description:
 
