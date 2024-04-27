@@ -1,3 +1,5 @@
+#Wildfire Prediction using Semi-supervised Learning
+
 Description:
 
 The dataset provided contains satellite images with dimensions of 350x350 pixels, categorized into two classes: "Wildfire" and "No wildfire." The original data source is Canada's Forest Fires data available on the Open Government Portal, licensed under Creative Commons 4.0 Attribution (CC-BY) license for Quebec.
